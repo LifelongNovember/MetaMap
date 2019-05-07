@@ -4,6 +4,10 @@ function point_it(event){
 	document.getElementById("cross").style.left = (pos_x).toString() + 'px';
   document.getElementById("cross").style.top = (pos_y).toString() + 'px';
 	document.getElementById("cross").style.visibility = "visible" ;
-	document.marqueur.x.value = pos_x;
-	document.marqueur.y.value = pos_y;
+	document.getElementById("pos_x").value = pos_x;
+	document.getElementById("pos_y").value = pos_y;
 }
+
+window.onload = function() {
+
+};

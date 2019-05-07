@@ -1,0 +1,51 @@
+#cross {
+  position: relative;
+  visibility: hidden;
+  z-index: 2;
+}
+
+#pointer_div {
+  background-image: url('map.jpg');
+  width: 1024px;
+  height: 635px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.interface {
+  margin: 10px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.col-25 {
+  flex: 1;
+}
+
+.col-75 {
+  flex: 3;
+}
+
+.col-25 > input, .col-75 > input {
+  width: 100%;
+}
+
+.col-25, .col-75 {
+  text-align: center;
+  margin: 5px 0 5px 0;
+}
+
+.col-25 > label, .col-75 > label {
+  padding-right: 5px
+}
+
+.soumission_formulaire {
+  justify-content: flex-end;
+}
