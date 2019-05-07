@@ -1,5 +1,5 @@
-#cross {
-  position: relative;
+.marqueur {
+  position: absolute;
   visibility: hidden;
   z-index: 2;
 }
@@ -8,6 +8,8 @@
   background-image: url('map.jpg');
   width: 1024px;
   height: 635px;
+  display: block;
+  position: relative;
 }
 
 .content {

@@ -7,6 +7,8 @@ if(!empty($_POST)) {
   $message_retour = "Marqueur " . $_POST['nom_marqueur'] . " placé en [" . $_POST['pos_x'] . ", " . $_POST['pos_y'] . "]";
 }
 
+$marqueurs = get_marqueurs($pdo);
+
 ?>
 
 
@@ -17,7 +19,7 @@ if(!empty($_POST)) {
 <body>
   <div class="content">
     <div id="pointer_div" onclick="point_it(event)" style="">
-      <img src="point.gif" id="cross">
+      <img src="point.gif" id="cross" class="marqueur" />
     </div>
     <div class="interface">
       <form action="coord.php" method="post">
@@ -58,5 +60,12 @@ if(!empty($_POST)) {
   <form id="marqueur" name="marqueur" method="post" action="coord.php">
   </form>
   <script type="text/javascript" src="coord.js"></script>
+  <script type="text/javascript">
+    <?php
+    while($marqueur = $marqueurs->fetch()) {
+      echo 'ajout_marqueur(' . $marqueur['posX'] . ',' . $marqueur['posY'] . ');';
+    }
+    ?>
+  </script>
 </body>
 </html>

@@ -2,10 +2,7 @@
 
 require_once 'config_bdd.php';
 
-global $pdo;
-
- $pdo = new PDO("mysql:host=$host;port=$port;dbname=$database", $user, $password);
-
+$pdo = new PDO("mysql:host=$host;port=$port;dbname=$database", $user, $password);
 
 function enregistrer_marqueur($conn, $uuid, $nom_marqueur, $pos_x, $pos_y) {
   $stmt = $conn->prepare("INSERT INTO marqueurs SET
@@ -21,4 +18,8 @@ function enregistrer_marqueur($conn, $uuid, $nom_marqueur, $pos_x, $pos_y) {
     ':posX' => $pos_x,
     ':posY' => $pos_y
   ));
+}
+
+function get_marqueurs($conn) {
+  return $conn->query("SELECT * FROM marqueurs");
 }
