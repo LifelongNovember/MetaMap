@@ -1,20 +1,62 @@
+<?php
+
+require_once 'controleur.php';
+
+if(!empty($_POST)) {
+  enregistrer_marqueur($pdo, uniqid(), $_POST['nom_marqueur'], $_POST['pos_x'], $_POST['pos_y']);
+  $message_retour = "Marqueur " . $_POST['nom_marqueur'] . " placé en [" . $_POST['pos_x'] . ", " . $_POST['pos_y'] . "]";
+}
+
+?>
+
+
 <html>
-  <head>
-    <script type="text/javascript" src="coord.js"></script>
-  </head>
-  <body>
-    <div id="pointer_div" onclick="point_it(event)" style="background-image:url('map.jpg');width:1024px;height:635px;">
-      <img src="point.gif" id="cross" style="position:relative;visibility:hidden;z-index:2;"></div>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="content">
+    <div id="pointer_div" onclick="point_it(event)" style="">
+      <img src="point.gif" id="cross">
     </div>
-    <form id="marqueur" name="marqueur" method="post" action="coord.php">
-      <input type="hidden" name="dejarempli" value="1" />
-      <label for="nom">Nom du marqueur :</label>
-      <input type="text" name="nom" id="nom" value="<?php $nom=(isset($_POST['nom']) ? $_POST['nom'] : ''); echo $nom; ?>"/>
-      <label for="x">X :</label>
-      <input type="text" name="x" id="x" value="<?php $x=(isset($_POST['x']) ? $_POST['x'] : ''); echo $x; ?>" readonly />
-      <label for="y">Y :</label>
-      <input type="text" name="y" id="y" value="<?php $x=(isset($_POST['x']) ? $_POST['y'] : ''); echo $x; ?>" readonly />
-      <input type="submit" value="Envoyer" onclick="setValue();" />
-    </form>
-  </body>
+    <div class="interface">
+      <form action="coord.php" method="post">
+        <div class="infos_marqueurs row">
+          <div class="col-25">
+            <label for="nom_marqueur">Nom du marqueur : </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="nom_marqueur" name="nom_marqueur" />
+          </div>
+        </div>
+        <div class="position_marqueur row">
+          <div class="col-25">
+            <label for="pos_x">X : </label>
+          </div>
+          <div class="col-25">
+            <input type="text" id="pos_x" name="pos_x" readonly />
+          </div>
+          <div class="col-25">
+            <label for="pos_y">Y : </label>
+          </div>
+          <div class="col-25">
+            <input type="text" id="pos_y" name="pos_y" readonly />
+          </div>
+        </div>
+        <div class="soumission_formulaire row">
+          <div class="col-75"></div>
+          <div class="col-25">
+            <input type="submit" value="Envoyer" />
+          </div>
+        </div>
+        <div class="message_retour row">
+          <?php echo isset($message_retour) ? $message_retour : null; ?>
+        </div>
+      </form>
+    </div>
+  </div>
+  <form id="marqueur" name="marqueur" method="post" action="coord.php">
+  </form>
+  <script type="text/javascript" src="coord.js"></script>
+</body>
 </html>
